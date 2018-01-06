@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     ctcfunction.cpp \
     slock.cpp \
     crashprocessor.cpp \
-    normalprocessor.cpp
+    normalprocessor.cpp \
+    coloritem.cpp
 
 HEADERS  += ctc.h \
     ctcfunction.h \
     slock.h \
     crashprocessor.h \
-    normalprocessor.h
+    normalprocessor.h \
+    coloritem.h
 
 FORMS    += ctc.ui
 CONFIG += c++11

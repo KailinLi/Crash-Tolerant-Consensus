@@ -27,17 +27,22 @@ public:
     QThread thread[MAX_PROCESSOR];
     CrashProcessor *crash[MAX_PROCESSOR];
     NormalProcessor *normal[MAX_PROCESSOR];
-    int ProcessorNum = 0;
-    int CrashNum = 0;
+    int normalCnt;
+    int crashCnt;
+    int ProcessorNum;
+    int CrashNum;
+    volatile int vround;
     std::vector<int> info;
     Slock* sema;
     Slock* semb[MAX_PROCESSOR];
     int localVal[MAX_PROCESSOR];
-    int run(int argc, int cNum);
+    void run();
 //    void CrashProcessor(int pos);
 //    void NormalProcessor(int pos);
 signals:
-
+    void begin();
+    void updatePos(int i);
+    void crashPos(int i);
 public slots:
 };
 
