@@ -37,6 +37,7 @@ void CrashProcessor::processor()
             if(cnt==randround)
             {
                 printf("I am the %dth carsh processor failed at round %d,my final value is %d\n", pos,randround, localVal[pos]);
+                (*info)[pos] = 0x3f3f3f3f;
                 emit crashMsg (pos);
             }
             continue;
@@ -58,4 +59,9 @@ void CrashProcessor::processor()
     {
         printf("I am the %dth normal processor,my final value is %d\n",pos, localVal[pos]);
     }
+}
+
+void CrashProcessor::deleteSelf()
+{
+    this->deleteLater ();
 }

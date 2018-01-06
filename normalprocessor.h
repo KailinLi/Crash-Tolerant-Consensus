@@ -24,7 +24,9 @@ public:
     void processor();
 signals:
     void updateVal(int i);
+
 public slots:
+    void deleteSelf();
 };
 
 #endif // NORMALPROCESSOR_H

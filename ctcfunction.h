@@ -15,7 +15,7 @@
 #include <crashprocessor.h>
 #include <normalprocessor.h>
 const int INF = 0x3f3f3f3f;
-const int MAX_PROCESSOR = 200;
+const int MAX_PROCESSOR = 50;
 class CTCFunction : public QWidget
 {
     Q_OBJECT
@@ -43,6 +43,7 @@ signals:
     void begin();
     void updatePos(int i);
     void crashPos(int i);
+    void deleteProcessor();
 public slots:
 };
 

@@ -6,8 +6,10 @@
 #include <QPainter>
 #include <QLabel>
 #include <QtMath>
-#include <graphicsview.h>
 #include <coloritem.h>
+#include <QTimeLine>
+#include <QGraphicsItemAnimation>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class CTC;
@@ -18,16 +20,18 @@ class CTC : public QWidget
     Q_OBJECT
 
 public:
-    explicit CTC(QWidget *parent = 0);
+    explicit CTC(QWidget *parent = 0, int ProcessorNum = 0, int CrashNum = 0);
     ~CTC();
-private:
+public:
     Ui::CTC *ui;
+    int ProcessorNum;
+    int CrashNum;
     CTCFunction core;
     int lableSize = 40;
-    QLabel *lable[200];
+//    QLabel *lable[200];
     QGraphicsScene *scene;
+    ColorItem *cItem[200];
 public:
-    int ProcessorNum;
 public slots:
     void clickBtn();
     void updateUI(int pos);

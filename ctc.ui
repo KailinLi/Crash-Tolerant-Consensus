@@ -23,31 +23,49 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Begin</string>
    </property>
   </widget>
   <widget class="QPushButton" name="step">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>370</x>
      <y>450</y>
      <width>80</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>step</string>
+    <string>Step</string>
    </property>
   </widget>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>90</y>
-     <width>371</width>
-     <height>311</height>
+     <x>30</x>
+     <y>30</y>
+     <width>400</width>
+     <height>400</height>
     </rect>
    </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>30</y>
+     <width>201</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>120</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Value</string>
+    </property>
+   </column>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

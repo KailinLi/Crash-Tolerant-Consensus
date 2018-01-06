@@ -25,6 +25,7 @@ signals:
     void updateVal(int i);
     void crashMsg(int i);
 public slots:
+    void deleteSelf();
 };
 
 #endif // CRASHPROCESSOR_H

@@ -18,14 +18,17 @@ SOURCES += main.cpp\
     slock.cpp \
     crashprocessor.cpp \
     normalprocessor.cpp \
-    coloritem.cpp
+    coloritem.cpp \
+    begin.cpp
 
 HEADERS  += ctc.h \
     ctcfunction.h \
     slock.h \
     crashprocessor.h \
     normalprocessor.h \
-    coloritem.h
+    coloritem.h \
+    begin.h
 
-FORMS    += ctc.ui
+FORMS    += ctc.ui \
+    begin.ui
 CONFIG += c++11

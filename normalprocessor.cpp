@@ -42,3 +42,8 @@ void NormalProcessor::processor()
     }
     printf("I am the %dth normal processor,my final value is %d\n",pos, localVal[pos]);
 }
+
+void NormalProcessor::deleteSelf()
+{
+    this->deleteLater ();
+}

@@ -2,26 +2,44 @@
 
 #include "coloritem.h"
 
-//! [0]
 ColorItem::ColorItem()
-    : color(qrand() % 256, qrand() % 256, qrand() % 256)
+    : color(qrand() % 256, qrand() % 256, qrand() % 256),
+      text(tr("INF"))
 {
     setToolTip(QString("QColor(%1, %2, %3)\n%4")
               .arg(color.red()).arg(color.green()).arg(color.blue())
-              .arg("Click and drag this color onto the robot!"));
+              .arg("Click and drag this item!"));
     setCursor(Qt::OpenHandCursor);
     setAcceptedMouseButtons(Qt::LeftButton);
-}
-//! [0]
+    setFlag (QGraphicsItem::ItemIsMovable);
 
-//! [1]
+
+//    QParallelAnimationGroup *animation = new QParallelAnimationGroup(this);
+
+//    QPropertyAnimation *headAnimation = new QPropertyAnimation(headItem, "rotation");
+//    headAnimation->setStartValue(20);
+//    headAnimation->setEndValue(-20);
+//    QPropertyAnimation *headScaleAnimation = new QPropertyAnimation(this, "scale");
+//    headScaleAnimation->setEndValue(2.1);
+//    animation->addAnimation(headAnimation);
+//    animation->addAnimation(headScaleAnimation);
+
+//! [13]
+//    for (int i = 0; i < animation->animationCount(); ++i) {
+//        QPropertyAnimation *anim = qobject_cast<QPropertyAnimation *>(animation->animationAt(i));
+//        anim->setEasingCurve(QEasingCurve::SineCurve);
+//        anim->setDuration(2000);
+//    }
+
+//    animation->setLoopCount(-1);
+//    animation->start();
+}
+
 QRectF ColorItem::boundingRect() const
 {
     return QRectF(-15.5, -15.5, 34, 34);
 }
-//! [1]
 
-//! [2]
 void ColorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
@@ -32,17 +50,30 @@ void ColorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->setPen(QPen(Qt::black, 1));
     painter->setBrush(QBrush(color));
     painter->drawEllipse(-15, -15, 30, 30);
+    QFont font("Times", 10, QFont::Bold, true);
+    painter->setFont (font);
+    painter->drawText(10, -15, text);
+    painter->drawText(10, -15, text);
 }
-//! [2]
 
-//! [3]
-void ColorItem::mousePressEvent(QGraphicsSceneMouseEvent *)
+void ColorItem::setColor(QColor c)
+{
+    color = c;
+    update ();
+}
+
+void ColorItem::setText(QString s)
+{
+    text = s;
+    update();
+}
+
+
+void ColorItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     setCursor(Qt::ClosedHandCursor);
 }
-//! [3]
 
-//! [5]
 void ColorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if (QLineF(event->screenPos(), event->buttonDownScreenPos(Qt::LeftButton))
@@ -53,9 +84,7 @@ void ColorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QDrag *drag = new QDrag(event->widget());
     QMimeData *mime = new QMimeData;
     drag->setMimeData(mime);
-//! [5]
 
-//! [6]
     static int n = 0;
     if (n++ > 2 && (qrand() % 3) == 0) {
         QImage image(":/images/head.png");
@@ -63,8 +92,7 @@ void ColorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
         drag->setPixmap(QPixmap::fromImage(image).scaled(30, 40));
         drag->setHotSpot(QPoint(15, 30));
-//! [6]
-//! [7]
+
     } else {
         mime->setColorData(color);
         mime->setText(QString("#%1%2%3")
@@ -86,17 +114,15 @@ void ColorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         drag->setPixmap(pixmap);
         drag->setHotSpot(QPoint(15, 20));
     }
-//! [7]
 
-//! [8]
     drag->exec();
     setCursor(Qt::OpenHandCursor);
 }
-//! [8]
 
-//! [4]
-void ColorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
+void ColorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+//    this->setPos (event->screenPos());
+//    update ();
     setCursor(Qt::OpenHandCursor);
 }
 //! [4]

@@ -4,13 +4,15 @@
 #include <QGraphicsItem>
 
 //! [0]
-class ColorItem : public QGraphicsItem
+class ColorItem : public QObject, public QGraphicsItem
 {
 public:
     ColorItem();
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    void setColor(QColor c);
+    void setText(QString s);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
@@ -19,6 +21,7 @@ protected:
 
 private:
     QColor color;
+    QString text;
 };
 //! [0]
 
