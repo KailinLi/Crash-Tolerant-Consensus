@@ -76,7 +76,7 @@ CTCFunction::CTCFunction(QWidget *parent, int pNum, int cNum) :
 
 CTCFunction::~CTCFunction()
 {
-    emit deleteProcessor ();
+//    emit deleteProcessor ();
     sema->~Slock ();
     for(int cnt = 0; cnt < MAX_PROCESSOR; cnt++)
     {
