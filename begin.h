@@ -2,6 +2,7 @@
 #define BEGIN_H
 
 #include <QDialog>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class Begin;
@@ -14,11 +15,12 @@ class Begin : public QDialog
 public:
     explicit Begin(QWidget *parent = 0, int *total = 0, int *crash = 0);
     ~Begin();
+    void clickOK();
+    void shakeWindow();
+public:
+    Ui::Begin *ui;
     int *total;
     int *crash;
-    void clickOK();
-private:
-    Ui::Begin *ui;
 };
 
 #endif // BEGIN_H

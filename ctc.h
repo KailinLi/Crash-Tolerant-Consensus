@@ -31,6 +31,7 @@ public:
 //    QLabel *lable[200];
     QGraphicsScene *scene;
     ColorItem *cItem[200];
+    std::vector<bool> tmpId;
 public:
 public slots:
     void clickBtn();

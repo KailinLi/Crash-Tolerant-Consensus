@@ -14,30 +14,29 @@ ColorItem::ColorItem()
     setFlag (QGraphicsItem::ItemIsMovable);
 
 
-//    QParallelAnimationGroup *animation = new QParallelAnimationGroup(this);
+    animation = new QParallelAnimationGroup(this);
 
 //    QPropertyAnimation *headAnimation = new QPropertyAnimation(headItem, "rotation");
 //    headAnimation->setStartValue(20);
 //    headAnimation->setEndValue(-20);
-//    QPropertyAnimation *headScaleAnimation = new QPropertyAnimation(this, "scale");
-//    headScaleAnimation->setEndValue(2.1);
+    QPropertyAnimation *headScaleAnimation = new QPropertyAnimation(this, "scale");
+    headScaleAnimation->setEndValue(1.6);
 //    animation->addAnimation(headAnimation);
-//    animation->addAnimation(headScaleAnimation);
+    animation->addAnimation(headScaleAnimation);
 
-//! [13]
-//    for (int i = 0; i < animation->animationCount(); ++i) {
-//        QPropertyAnimation *anim = qobject_cast<QPropertyAnimation *>(animation->animationAt(i));
-//        anim->setEasingCurve(QEasingCurve::SineCurve);
-//        anim->setDuration(2000);
-//    }
+    for (int i = 0; i < animation->animationCount(); ++i) {
+        QPropertyAnimation *anim = qobject_cast<QPropertyAnimation *>(animation->animationAt(i));
+        anim->setEasingCurve(QEasingCurve::SineCurve);
+        anim->setDuration(2000);
+    }
 
-//    animation->setLoopCount(-1);
-//    animation->start();
+    animation->setLoopCount(-1);
+    animation->start();
 }
 
 QRectF ColorItem::boundingRect() const
 {
-    return QRectF(-15.5, -15.5, 34, 34);
+    return QRectF(-15.5, -15.5, 60, 34);
 }
 
 void ColorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -52,8 +51,7 @@ void ColorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->drawEllipse(-15, -15, 30, 30);
     QFont font("Times", 10, QFont::Bold, true);
     painter->setFont (font);
-    painter->drawText(10, -15, text);
-    painter->drawText(10, -15, text);
+    painter->drawText(0, -5, text);
 }
 
 void ColorItem::setColor(QColor c)
@@ -68,8 +66,13 @@ void ColorItem::setText(QString s)
     update();
 }
 
+void ColorItem::stopAnimation()
+{
+    animation->stop ();
+}
 
-void ColorItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+
+void ColorItem::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     setCursor(Qt::ClosedHandCursor);
 }
@@ -119,7 +122,7 @@ void ColorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     setCursor(Qt::OpenHandCursor);
 }
 
-void ColorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void ColorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
 //    this->setPos (event->screenPos());
 //    update ();
